@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xlms="http://www.w3.org/1999/xhtml" ng-app="Car App">
+  <head>
+    <meta charset="utf-8">
+    <title>Car</title>
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers.js"></script>
+  </head>
+  <body ng-controller="CarsListController as controller">
+    <h2>Cars</h2>
+    <ul>
+      <li ng-repeat="car in controller.cars">{{car.title}}</li>
+    </ul>
+
+    <form name="carForm" novalidate>
+    <div layout="row" layout-padding>
+      <md-input-container>
+
+        <label>Car Make</label>
+
+        <input name="make" ng-model="vm.make" md-maxlength="15" required>
+        <div ng-messages="carForm.make.$error">
+          <div ng-message="required">Required.</div>
+          <div ng-message="md-maxlength">This field can't be more than 15 characters.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Car Model</label>
+        <input name="model" ng-model="vm.model" required>
+        <div ng-messages="carForm.model.$error">
+          <div ng-message="required">Required.</div>
+        </div>
+      </md-input-container>
+    </div>
+
+    <div>
+      <md-select ng-model="vm.year" md-placeholder="Year"><md-option ng-value="year"
+        ng-repeat="year in vm.yearNames">{{year}}
+      </md-select>
+    </div>
+    <div>
+      <md-button class="md-primary">Save</md-button>
+    </div>
+  </form>
+
+  <div class="container">
+
+    <h1>Pick a car:</h1>
+    <button class="btn" ng-click="controller.showModal('BMW')">BMW</button>
+    <button class="btn" ng-click="controller.showModal('Tesla')">Tesla</button>
+    <button class="btn" ng-click="controller.ShowModal('Mini Cooper')">Mini Cooper</button>
+
+
+  </body>
+</html>
